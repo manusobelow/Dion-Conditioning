@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>Bell</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      color: white;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      overflow: hidden;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    #bell {
+      width: 100vw;
+      height: 100vh;
+      border: 0;
+      background: #111;
+      color: white;
+      font-size: clamp(24px, 8vw, 56px);
+      font-weight: 600;
+      letter-spacing: 2px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #bell:active { background: #222; }
+    .icon { display: block; font-size: 1.8em; margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+  <button id="bell" aria-label="Play bell">
+    <span class="icon">🔔</span>
+    BELL
+  </button>
+
+  <audio id="sound" src="BellDion.mp3" preload="auto"></audio>
+
+  <script>
+    const button = document.getElementById("bell");
+    const sound = document.getElementById("sound");
+
+    button.addEventListener("click", () => {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    });
+  </script>
+</body>
+</html>
